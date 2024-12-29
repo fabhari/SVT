@@ -37,5 +37,9 @@
     "js": ["content.js"],
     "type": "module",
     "run_at": "document_start"
+  }],
+  "web_accessible_resources": [{
+    "resources": ["data.txt"],
+    "matches": ["<all_urls>"]
   }]
 }
