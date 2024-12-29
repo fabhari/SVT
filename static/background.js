@@ -1,4 +1,3 @@
-import SponsorDataService from './SponsorDataService.js';
 
 try
 {
@@ -125,17 +124,35 @@ try
     }
   }
 
-  // Listen for Chrome startup
-  // chrome.runtime.onStartup.addListener(() => {
-  //   console.log('Chrome started');
-  //   //downloadSponsors();
-  // });
 
+  async function refreshTabs(){
+    try {
+      const tabs = await chrome.tabs.query({});
+      console.log('Refreshing LinkedIn tab:',tabs);
+      for (const tab of tabs) {
+        try {
+          if (tab.url?.includes('linkedin.com')) {
+            console.log('Refreshing LinkedIn tab:', tab.id);
+            await chrome.tabs.reload(tab.id ,{ bypassCache: true });
+          }
+        } catch (tabError) {
+          console.log('Error processing tab:', tab.id, tabError);
+        }
+      }
+    } catch (error) {
+      console.log('Error during startup refresh:', error);
+    }
+  }
+
+  chrome.runtime.onStartup.addListener(async () => {
+    refreshTabs();
+  });
+  
 
   // Set up daily update
   chrome.runtime.onInstalled.addListener(() => {
     console.log("am being installed")
-   // downloadSponsors();
+    refreshTabs();
     chrome.alarms.create('updateSponsors', {
       periodInMinutes: 60 * 5 // 24 hours
     });
