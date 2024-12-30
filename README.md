@@ -37,3 +37,8 @@ step 3 : use fuzzt to match the nearest ocmpany name list
 step 4 : go ping this company name with that pi to fecth linkeidn and facebook details one by one..and populate in the left panel.
 Step 5 :
 step 6 :  get analytics of that company - futurel..
+
+
+
+Best test cases for other extension.
+-jp morngan chase

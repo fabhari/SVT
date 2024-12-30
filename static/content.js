@@ -122,7 +122,13 @@ class Trie {
         .map(line => line.trim().toLowerCase())
         .filter(line => line.length > 0);
 
-      companies.forEach(company => this.insert(company));
+        companies.forEach(company => {
+            this.insert(company);
+            if (company.includes(' ')) {
+            const noSpaces = company.replace(/\s+/g, '');
+            this.insert(noSpaces);
+          }
+        });
       console.log(`Loaded ${companies.length} companies`);
     } catch (error) {
       console.error('Error loading companies:', error);
@@ -202,13 +208,11 @@ class Trie {
     }
   });
 
-  try {
+  try 
+  {
     await trie.initialize(); 
-  } catch (error) {
+  } catch (error) 
+  {
     console.log('Error:', error);
   }
-
-
-
-
 })();
