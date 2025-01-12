@@ -112,7 +112,20 @@ try
     }
   });
 
-
+  chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
+    if (message.action === "openSidePanel") {
+      try {
+        await chrome.sidePanel.setOptions({
+          tabId: sender.tab.id,
+          path: "index.html",
+          enabled: true,
+        });
+      }  catch(e){
+        console.log(e)
+      }
+    }
+  });
+    
   // Initialize download check
   async function downloadSponsors() {
     try {

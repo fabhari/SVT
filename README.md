@@ -42,3 +42,8 @@ step 6 :  get analytics of that company - futurel..
 
 Best test cases for other extension.
 -jp morngan chase
+
+
+
+i have two different job portal indeed linkedin i want to compare data i want to send to gpt .
+

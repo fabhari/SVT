@@ -9,14 +9,14 @@ function isVisaSponsor(companyName) {
   console.log(data)
   return data.length > 0;
 }
-
+// tAwuDyPkXRFipemrPiTUbCCSWPlFqctmjJVaM
 
 //------------ Linkedin Parser ------------
 class LinkedinParser{
   constructor(){
     this.data = [];
-    this.linkedinJobContainer = 'rjmNTMLkNvPwnJnFTCybgSFpgYGQ';
-    this.linkedinJobPostingClass = 'qWfdXzyeXDuRARonfVAolXAIekneWwGdBuiY';
+    this.linkedinJobContainer = 'scaffold-layout__list ';
+    this.linkedinJobPostingClass = 'artdeco-entity-lockup__subtitle';
   }
 
   async setupJobContainerObserver() {
@@ -81,6 +81,7 @@ class TrieNode {
     this.children = {};
     this.isEndOfWord = false;
     this.companyName = null;
+    this.originalCompanyName = null;
   }
 }
 
@@ -119,14 +120,14 @@ class Trie {
       
       const companies = text
         .split('\n')
-        .map(line => line.trim().toLowerCase())
+        .map(line => line.trim())
         .filter(line => line.length > 0);
 
         companies.forEach(company => {
-            this.insert(company);
+            this.insert(company.toLowerCase(), company);
             if (company.includes(' ')) {
             const noSpaces = company.replace(/\s+/g, '');
-            this.insert(noSpaces);
+            this.insert(noSpaces.toLowerCase(), company);
           }
         });
       console.log(`Loaded ${companies.length} companies`);
@@ -136,7 +137,7 @@ class Trie {
     }
   }
 
-  insert(companyName) {
+  insert(companyName, originalCompanyName) {
     let node = this.root;
     for (const char of companyName) {
       if (!node.children[char]) {
@@ -146,6 +147,7 @@ class Trie {
     }
     node.isEndOfWord = true;
     node.companyName = companyName;
+    node.originalCompanyName = originalCompanyName;
   }
 
   findSuggestions(prefix, limit = 3) {
@@ -175,7 +177,7 @@ class Trie {
     if (suggestions.length >= limit) return;
 
     if (node.isEndOfWord) {
-      suggestions.push(node.companyName);
+      suggestions.push(node.originalCompanyName);
     }
 
     for (const char in node.children) {
