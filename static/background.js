@@ -140,7 +140,7 @@ try
   });
 
   chrome.sidePanel.setPanelBehavior({openPanelOnActionClick:true}).catch((error)=>console.log(error))
-// chrome.sidePanel.open()
+
     
   // Initialize download check
   async function downloadSponsors() {
