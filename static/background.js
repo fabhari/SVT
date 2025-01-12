@@ -125,6 +125,22 @@ try
       }
     }
   });
+
+  chrome.action.onClicked.addListener(() => {
+    chrome.sidePanel.setOptions({
+      path: "index.html",
+      enabled: true
+    }, () => {
+      if (chrome.runtime.lastError) {
+        console.error("Error opening side panel:", chrome.runtime.lastError);
+      } else {
+        console.log("Side panel opened.");
+      }
+    });
+  });
+
+  chrome.sidePanel.setPanelBehavior({openPanelOnActionClick:true}).catch((error)=>console.log(error))
+// chrome.sidePanel.open()
     
   // Initialize download check
   async function downloadSponsors() {
