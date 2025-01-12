@@ -11,7 +11,7 @@
     "notifications",
     "activeTab",
     "storage",
-    "sidePanel",
+  
     "identity",
     "alarms",
     "scripting",
@@ -41,9 +41,9 @@
     ]
   },
   "icons": {
-  "16": "icons/icon16.png",
-  "48": "icons/icon48.png",
-  "128": "icons/icon128.png"
+  "16": "icons/16.png",
+  "48": "icons/48.png",
+  "128": "icons/128.png"
 },
   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2w6cEzG+UBONJaSuZ2L7BdqspNHncq3uHIT9Tw3b6wnm32eKuj7tY68qjtVAxRhDaJK5cGWTxzlvXP6laouJi10ImGLHiHaJrE7DeDLcb31Z6a4d558lI/2a+QL+KbcpaTW5mRs2fsx4gKbf0HqtDT4x5Plky8J43HfB66DuCVPmemE7HpNAET79OQD7hSvVZ8j8M+Lsd5e84jRyHmL9pS8SHNnl7HQDIL1o5XAzon5MqFmAChmYMQpGd/H1IYhwoS/Dgbeb1pIRtqLHY8EpT1gkUJUVifwPT0eZuTec+wBkIxB/9BXQnvzUwR5jZwEyESFKOyMcZhxXBVocYmcSaQIDAQAB",
   "content_scripts": [{
