@@ -1,0 +1,65 @@
+{
+  "name": "svt",
+  "displayName": "SVT",
+  "version": "0.0.2",
+  "description": "sponsored visa tracker test1",
+  "author": "fabhari36@gmail.com",
+  "scripts": {
+    "dev": "plasmo dev",
+    "build": "plasmo build",
+    "package": "plasmo package"
+  },
+  "dependencies": {
+    "csv-writer": "^1.6.0",
+    "json2csv": "6.0.0-alpha.2",
+    "plasmo": "0.90.3",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "icons": {
+    "16": "assets/icon16.png",
+    "32": "assets/icon32.png",
+    "48": "assets/icon48.png",
+    "128": "assets/icon128.png"
+  },
+  "devDependencies": {
+    "@ianvs/prettier-plugin-sort-imports": "4.1.1",
+    "@types/chrome": "0.0.258",
+    "@types/node": "20.11.5",
+    "@types/react": "18.2.48",
+    "@types/react-dom": "18.2.18",
+    "prettier": "3.2.4",
+    "typescript": "5.3.3"
+  },
+  "manifest": {
+    "host_permissions": [
+      "https://*/*"
+    ],
+    "permissions": [
+      "declarativeNetRequest",
+      "sidePanel",
+      "debugger",
+      "system.display",
+      "tabs",
+      "notifications",
+      "activeTab",
+      "storage",
+      "identity",
+      "alarms",
+      "scripting"
+    ],
+    "web_accessible_resources": [
+      {
+        "resources": [
+          "data.txt",
+          "trie.js",
+          "linkedinParser.js",
+          "sponsorDataService.js"
+        ],
+        "matches": [
+          "<all_urls>"
+        ]
+      }
+    ]
+  }
+}
