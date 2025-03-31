@@ -1,15 +1,15 @@
 
-import SponsorDataService from './SponsorDataService.js';
+// import SponsorDataService from './sponsorDataService.js';
 
 setTimeout(() => {
-  chrome.sidePanel.setPanelBehavior({ openPanelOnActionClick: true })
+  chrome.sidePanel.setPanelBehavior({ openPanelOnActionClick: false })
     .catch((error) => console.error('Error setting side panel behavior:', error));
 }, 100);
   
   try
   {
  
-    const sponsorService = new SponsorDataService();
+    // const sponsorService = new SponsorDataService();
 
     const ALLOWED_DOMAINS = [
       'www.linkedin.com',
@@ -55,7 +55,7 @@ setTimeout(() => {
   
     async function sendMessageToTab(tabId, message) {
       if (!shouldProcessTab(tabId, message.url)) {
-        console.log('Skip duplicate processing for:', message.url);
+        // //console.log('Skip duplicate processing for:', message.url);
         return;
       }
       try {
@@ -104,58 +104,58 @@ setTimeout(() => {
   
     chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
       if (message.action === "COMPANY_NAME") {
-        console.log("Company name received:", message.data);
-        getCompaniesFromStorage(message?.data)
+        // //console.log("Company name received:", message.data);
+       // getCompaniesFromStorage(message?.data)
       }
     });
 
 
       
     // Initialize download check
-    async function downloadSponsors() {
-      try {  
-        sponsorService.getAllCompanies();
-      }
-      catch(e){
-        console.log(e)
-      }
-    }
+    // async function downloadSponsors() {
+    //   try {  
+    //     sponsorService.getAllCompanies();
+    //   }
+    //   catch(e){
+    //     //console.log(e)
+    //   }
+    // }
   
-    async function getCompaniesFromStorage(CompanyName) {
+    // async function getCompaniesFromStorage(CompanyName) {
 
-      const companyName = CompanyName; 
+    //   const companyName = CompanyName; 
 
-      try {
-          const storedCompanyData = await chrome.storage.local.get([companyName]);
-          if (storedCompanyData[companyName]) {
-              console.log("Company data retrieved from storage:", storedCompanyData[companyName]);
-              return storedCompanyData[companyName];
-          } else {
-              const fetchedCompanyData = await sponsorService.fetchCompanyData(companyName);
-              console.log("Company data not found in storage, fetching from API...",fetchedCompanyData);
-              await sponsorService.itrCompanyDataSaveStorage(fetchedCompanyData);
-          }
-      } catch (error) {
-          console.log("Error retrieving or fetching company data:", error);
-      }
-    }
+    //   try {
+    //       const storedCompanyData = await chrome.storage.local.get([companyName]);
+    //       if (storedCompanyData[companyName]) {
+    //           //console.log("Company data retrieved from storage:", storedCompanyData[companyName]);
+    //           return storedCompanyData[companyName];
+    //       } else {
+    //           const fetchedCompanyData = await sponsorService.fetchCompanyData(companyName);
+    //           //console.log("Company data not found in storage, fetching from API...",fetchedCompanyData);
+    //           await sponsorService.itrCompanyDataSaveStorage(fetchedCompanyData);
+    //       }
+    //   } catch (error) {
+    //       //console.log("Error retrieving or fetching company data:", error);
+    //   }
+    // }
   
     async function refreshTabs(){
       try {
         const tabs = await chrome.tabs.query({});
-        console.log('Refreshing LinkedIn tab:',tabs);
+        //console.log('Refreshing LinkedIn tab:',tabs);
         for (const tab of tabs) {
           try {
             if (tab.url?.includes('linkedin.com')) {
-              console.log('Refreshing LinkedIn tab:', tab.id);
+              //console.log('Refreshing LinkedIn tab:', tab.id);
               await chrome.tabs.reload(tab.id ,{ bypassCache: true });
             }
           } catch (tabError) {
-            console.log('Error processing tab:', tab.id, tabError);
+            //console.log('Error processing tab:', tab.id, tabError);
           }
         }
       } catch (error) {
-        console.log('Error during startup refresh:', error);
+        //console.log('Error during startup refresh:', error);
       }
     }
   
@@ -166,9 +166,9 @@ setTimeout(() => {
   
     // Set up daily update
     chrome.runtime.onInstalled.addListener(() => {
-      console.log("am being installed")
+      //console.log("am being installed")
       refreshTabs();
-      downloadSponsors();
+      // downloadSponsors();
       chrome.alarms.create('updateSponsors', {
         periodInMinutes: 60 * 5 // 24 hours
       });
@@ -177,16 +177,14 @@ setTimeout(() => {
     // Listen for alarm
     chrome.alarms.onAlarm.addListener((alarm) => {
       if (alarm.name === 'updateSponsors') {
-        console.log("Alarm triggered")
-        downloadSponsors();
+        //console.log("Alarm triggered")
+        // downloadSponsors();
       }
     });
-  
-  
   }
   catch(e)
   {
-    console.log(e)
+    //console.log(e)
   }
   
   
@@ -218,10 +216,10 @@ setTimeout(() => {
     //   }
     // }
     
-//   // //console.log(tab.url)
+//   // ////console.log(tab.url)
 //       if (changeInfo.status === 'complete' && tab.url.includes('/screen/welcomescreen')) {
 //         chrome.tabs.remove(tabId, () => {
-//           //console.log(`Closed tab with ID: ${tabId} as it matched the URL condition.`);
+//           ////console.log(`Closed tab with ID: ${tabId} as it matched the URL condition.`);
 //         });
 //       }
 //     });
@@ -231,7 +229,7 @@ setTimeout(() => {
     //     tabs.forEach((tab) => {
     //       if (tab.url.includes('/screen/welcomescreen')) {
     //         chrome.tabs.remove(tab.id, () => {
-    //           //console.log(`Closed tab with ID: ${tab.id} on startup as it matched the URL condition.`);
+    //           ////console.log(`Closed tab with ID: ${tab.id} on startup as it matched the URL condition.`);
     //         });
     //       }
     //     });

@@ -1,6 +1,6 @@
-import { LinkedinParser } from "./linkedinParser.js"
+import { LinkedinParser } from "./linkedinParser.js";
 
-let linkedinParser = null
+let linkedinParser = null;
 
 // tAwuDyPkXRFipemrPiTUbCCSWPlFqctmjJVaM
 
@@ -10,21 +10,24 @@ let linkedinParser = null
 
 //------------ Actual Code ------------
 
-;(async () => {
-  linkedinParser = new LinkedinParser()
+export const config = {
+  matches: ["https://www.linkedin.com/*"],
+};
+(async () => {
+  linkedinParser = new LinkedinParser();
 
   const JobSite = {
     LInkedin: 1,
     Glassdoor: 2,
     Monster: 3,
-    Indeed: 4
-  }
+    Indeed: 4,
+  };
 
   chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    console.log("Start Linkedin Parsing...")
+    console.log("Start Linkedin Parsing...");
     if (message.action === "PARSE_JOBS") {
-      console.log("PARSE_JOBS")
-      linkedinParser.setupJobContainerObserver()
+      console.log("PARSE_JOBS");
+      linkedinParser.setupJobContainerObserver();
     }
-  })
-})()
+  });
+})();

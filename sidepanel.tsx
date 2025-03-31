@@ -24,7 +24,7 @@ const svt = () => {
         // });
      
     },[]);
-    return <div>testing</div>
+    return <div>SVT</div>
 }
 
 

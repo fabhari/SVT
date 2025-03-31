@@ -1,8 +1,8 @@
 {
   "name": "svt",
-  "displayName": "SVT",
-  "version": "0.0.2",
-  "description": "sponsored visa tracker test1",
+  "displayName": "UK Sponsored Visa Tracker",
+  "version": "2.0.3",
+  "description": "Track UK visa-sponsored jobs, highlight opportunities, and get AI-powered job recommendations across LinkedIn more on the way.",
   "author": "fabhari36@gmail.com",
   "scripts": {
     "dev": "plasmo dev",
@@ -33,31 +33,25 @@
   },
   "manifest": {
     "host_permissions": [
-      "https://*/*"
+       "https://www.linkedin.com/*"
     ],
     "permissions": [
-      "declarativeNetRequest",
       "sidePanel",
-      "debugger",
-      "system.display",
       "tabs",
       "notifications",
       "activeTab",
       "storage",
-      "identity",
       "alarms",
-      "scripting"
+      "scripting",
+      "unlimitedStorage"
     ],
     "web_accessible_resources": [
       {
         "resources": [
-          "data.txt",
-          "trie.js",
-          "linkedinParser.js",
-          "sponsorDataService.js"
+          "companies.csv"
         ],
         "matches": [
-          "<all_urls>"
+         "https://www.linkedin.com/*"
         ]
       }
     ]
