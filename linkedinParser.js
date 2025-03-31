@@ -1,13 +1,5 @@
-import { Trie } from "./trie.js";
+import trieInstance from "./parser";
 
-let trie = null;
-
-const getTrie = () => {
-  if (trie === null) {
-    trie = new Trie();
-  }
-  return trie;
-};
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 let payload = { action: "COMPANY_NAME", data: "" };
@@ -27,13 +19,13 @@ const sendCompanyName = (companyData) => {
 };
 
 function getCompanyDetails(companyName) {
-  const data = getTrie()?.findSuggestions(companyName);
+  const data = trieInstance.getTrie()?.findSuggestions(companyName);
   // console.log(data);
   return data;
 }
 //actual code to check if company is visa sponsor
 function isVisaSponsor(companyName) {
-  const data = getTrie()?.findSuggestions(companyName);
+  const data = trieInstance.getTrie()?.findSuggestions(companyName);
   // sendCompanyName(companyName);
   // console.log(data);
   return data.length > 0;
@@ -47,7 +39,7 @@ export class LinkedinParser {
     this.linkedinSelectedTitle =
       "job-details-jobs-unified-top-card__company-name";
     try {
-      getTrie()?.initialize();
+      trieInstance.getTrie()?.initialize();
     } catch (error) {
       console.log("Error:", error);
     }

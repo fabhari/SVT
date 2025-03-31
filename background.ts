@@ -1,5 +1,4 @@
 
-// import SponsorDataService from './sponsorDataService.js';
 
 setTimeout(() => {
   chrome.sidePanel.setPanelBehavior({ openPanelOnActionClick: false })
